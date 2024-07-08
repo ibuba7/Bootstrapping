@@ -1,0 +1,26 @@
+.container {
+    text-align: center;
+}
+
+.plot-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.plot {
+    flex: 1 0 48%;
+    margin: 10px;
+}
+
+.centered {
+    flex: 1 0 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+
+#cetes-table, #mbonos-table {
+    width: auto;
+    margin: 0 auto;
+}

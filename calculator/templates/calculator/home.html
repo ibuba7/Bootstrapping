@@ -1,0 +1,78 @@
+{% extends 'calculator/base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- ========================= SECTION MAIN ========================= -->
+<section class="section-intro padding-y-sm">
+    <div class="container">
+    </div> <!-- container //  -->
+</section>
+
+<!-- ========================= SECTION MAIN END// ========================= -->
+
+<!-- ========================= SECTION  ========================= -->
+<div class="container mt-5">
+    <div class="text-center">
+        <h1>Curve Bootstrapping</h1>
+        <p>Esta herramienta te ayudará a hacer el bootstrapping de la curva con los datos de los instrumentos que proporcionaste en el archivo sofr_data.xlsx. Recuerda que los resultados de las curvas se imprimen en el archivo yieldcurve.xlsx que se encuentra en el mismo directorio. </p>
+        <button id="generate-plots-btn" class="btn btn-primary">Genera curvas</button>
+        <div class="row plot-container mt-4">
+            <div class="col-md-6 mb-3">
+                <img id="zero-curve" class="img-fluid" style="display: none;" alt="">
+            </div>
+            <div class="col-md-6 mb-3">
+                <img id="discount-factor" class="img-fluid" style="display: none;" alt="">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-3">
+                <img id="forward-rate" class="img-fluid" style="display: none;" alt="">
+            </div>
+        </div>
+        <br>
+        <p id="reference-text" style="display: none;">A continuación como referencia las curvas de Cetes y Mbonos cuya información se propociona también en el archivo sofr_data.xlsx</p>
+        <h2 id="cetes-title" style="display: none;">Cetes Curve</h2>
+        <div class="row">
+            <div class="col-12 mb-3">
+                <img id="cetes-curve" class="img-fluid" style="display: none;" alt="">
+            </div>
+        </div>
+        <div id="cetes-table-container" class="text-center mb-5" style="display: none;">
+            <div id="cetes-table" class="d-inline-block"></div>
+        </div>
+        <h2 id="mbonos-title" style="display: none;">Mbonos Curve</h2>
+        <div class="row">
+            <div class="col-12 mb-3">
+                <img id="mbonos-curve" class="img-fluid" style="display: none;" alt="">
+            </div>
+        </div>
+        <div id="mbonos-table-container" class="text-center" style="display: none;">
+            <div id="mbonos-table" class="d-inline-block"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+        $("#generate-plots-btn").click(function(){
+            $.ajax({
+                url: "{% url 'bootstrapping' %}",
+                success: function(data){
+                    $("#zero-curve").attr("src", "data:image/png;base64," + data.zero_curve_img).show();
+                    $("#discount-factor").attr("src", "data:image/png;base64," + data.discount_factor_img).show();
+                    $("#forward-rate").attr("src", "data:image/png;base64," + data.forward_rate_img).show();
+                    $("#cetes-curve").attr("src", "data:image/png;base64," + data.cetes_curve_img).show();
+                    $("#mbonos-curve").attr("src", "data:image/png;base64," + data.mbonos_curve_img).show();
+                    $("#cetes-table").html(data.cetes_data);
+                    $("#mbonos-table").html(data.mbonos_data);
+                    $("#cetes-title").show();
+                    $("#mbonos-title").show();
+                    $("#cetes-table-container").show();
+                    $("#mbonos-table-container").show();
+                    $("#reference-text").show();
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

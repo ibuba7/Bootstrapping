@@ -1,0 +1,3 @@
+El código de bootstrapping de curvas fue hecho con base en el artículo de Sheikh Pancham aquí: https://www.linkedin.com/pulse/python-bootstrapping-zero-curve-sheikh-pancham/ Fue modificado para poder adecuar los datos que se proporcionaron, requiere revisión dado que se ven saltos en las curvas cuando se cambia de tipo de instrumentos pero dado el poco tiempo disponible se tomó como estaba. 
+
+Los insumos se leen del archivo sofr_data.xlsx, en la pestaña de curvedata se introducen los datos de los instrumentos, el tenor en días, meses o años. El tipo si son depósitos,  futuros o swaps, la frecuencia del pago de cupones o de la duración del instrumento, la convención de días y la tasa. 
