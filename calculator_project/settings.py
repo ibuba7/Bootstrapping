@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-ij4f=zg+n43$xp%u+avij9nzo%x!vixip@e^u!cojv9f&l%dm+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ibuba7.pythonanywhere.com']
+ALLOWED_HOSTS = ['ibuba7.pythonanywhere.com', '127.0.0.1']
 
 
 # Application definition
@@ -119,8 +119,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_URL = '/calculator/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'calculator/static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
